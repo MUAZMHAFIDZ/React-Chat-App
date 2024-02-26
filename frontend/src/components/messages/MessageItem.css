@@ -1,0 +1,124 @@
+.MessageBar {
+    width: 70%;
+    height: 100%;
+}
+.MessageBar .Header {
+    height: 5%;
+    padding-left: 15px;
+    background-color: cornflowerblue;
+    display: flex;
+    align-items: center;
+    border-top-right-radius: 10px;
+}
+.Header .To {
+    color: azure;
+}
+.Header .Friend {
+    margin-left: 15px;
+    color: aliceblue;
+}
+
+/* Message Chat Pages */
+.MessagePage {
+    height: 85%;
+    width: 99%;
+    border-bottom: 1px solid black;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 2px 2px;
+}
+
+/* Chat Items */
+.MessagePage p {
+    border-radius: 1.15rem;
+    line-height: 1.25;
+    max-width: 75%;
+    padding: 0.5rem .875rem;
+    position: relative;
+    word-wrap: break-word;
+  }
+  
+  .imessage p::before,
+  .imessage p::after {
+    bottom: -0.1rem;
+    content: "";
+    height: 1rem;
+    position: absolute;
+  }
+  
+  p.from-me {
+    align-self: flex-end;
+    background-color: #248bf5;
+    color: #fff; 
+  }
+  
+  p.from-me::before {
+    border-bottom-left-radius: 0.8rem 0.7rem;
+    border-right: 1rem solid #248bf5;
+    right: -0.35rem;
+    transform: translate(0, -0.1rem);
+  }
+  
+  p.from-me::after {
+    background-color: #fff;
+    border-bottom-left-radius: 0.5rem;
+    right: -40px;
+    transform:translate(-30px, -2px);
+    width: 10px;
+  }
+  
+  p[class^="from-"] {
+    margin: 0.5rem 0;
+    width: fit-content;
+  }
+  
+  p.from-me ~ p.from-me {
+    margin: 0.25rem 0 0;
+  }
+  
+  p.from-me ~ p.from-me:not(:last-child) {
+    margin: 0.25rem 0 0;
+  }
+  
+  p.from-me ~ p.from-me:last-child {
+    margin-bottom: 0.5rem;
+  }
+  
+  p.from-them {
+    align-items: flex-start;
+    background-color: #e5e5ea;
+    color: #000;
+  }
+  
+  p.from-them:before {
+    border-bottom-right-radius: 0.8rem 0.7rem;
+    border-left: 1rem solid #e5e5ea;
+    left: -0.35rem;
+    transform: translate(0, -0.1rem);
+  }
+  
+  p.from-them::after {
+    background-color: #fff;
+    border-bottom-right-radius: 0.5rem;
+    left: 20px;
+    transform: translate(-30px, -2px);
+    width: 10px;
+  }
+
+  /* input form */
+  .form {
+    padding: 5px;
+  }
+  .form .send {
+    height: 30px;
+    border: 2px solid cornflowerblue;
+    margin-left: 20px;
+    background-color: #444;
+    width: 50px;
+    color: cornflowerblue;
+    cursor: pointer;
+  }
+  .form .send:hover {
+    background-color: aliceblue;
+  }

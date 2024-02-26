@@ -25,8 +25,8 @@ const signup = async (req, res) => {
         // https://api.dicebear.com/7.x/adventurer/svg?skinColor=f2d3b1&hair=short01,short02,short03&seed=muaz
         // https://api.dicebear.com/7.x/adventurer/svg?skinColor=f2d3b1&hair=long01,long02,long03&seed=girl
 
-        const boyPhoto = `https://api.dicebear.com/7.x/adventurer/svg?skinColor=f2d3b1&hair=short01,short02,short03,short04,short05,short06,short07,short08,short09,short16,short18,short14,short19&seed=${username}`
-        const girlPhoto = `https://api.dicebear.com/7.x/adventurer/svg?skinColor=f2d3b1&hair=long01,long02,long03,long04,long05,long06,long07,long08,long09,long16,long18,long14,long19&seed=${username}`
+        const boyPhoto = `https://api.dicebear.com/7.x/adventurer/svg?skinColor=f2d3b1&hair=short06`
+        const girlPhoto = `https://api.dicebear.com/7.x/adventurer/svg?skinColor=f2d3b1&hair=long07`
 
         const newUser = new User({
             fullName, 
