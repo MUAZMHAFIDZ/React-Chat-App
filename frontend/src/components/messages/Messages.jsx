@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useAuthContext } from '../../context/AuthContext'
 import useGetMessage from '../../hooks/useGetMessage'
-import useConvertion from '../../store/useConvertion'
+import useConversation from '../../store/useConversation'
 import './MessageItem.css'
 const Messages = () => {
     const {messages, loading} = useGetMessage()
@@ -29,7 +29,7 @@ export default Messages
 
 const Message = ({message}) => {
     const {authUser} = useAuthContext()
-    const {selectedConvertion} = useConvertion()
+    const {selectedConversation} = useConversation()
 
     const FromMe = message.senderId === authUser._id
 

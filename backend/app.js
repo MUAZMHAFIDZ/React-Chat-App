@@ -2,10 +2,15 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import AuthRoute from "./route/Authroute.js";
-import MessageRoute from "./route/Messageroute.js";
-import UserRoute from "./route/Userroute.js";
+import AuthRoute from "./routes/AuthRoute.js";
+import MessageRoute from "./routes/MessageRoute.js";
+import UserRoute from "./routes/UserRoute.js";
 import dbconnect from "./db/dbconnect.js";
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -16,6 +21,7 @@ const PORT = process.env.PORT || 5000;
 //     res.send("hello Muaz")
 // })
 
+app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({ origin: 'http://localhost:3000', optionsSuccessStatus: 200 }))

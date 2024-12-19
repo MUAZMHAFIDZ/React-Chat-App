@@ -1,8 +1,10 @@
-import Jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
+import User from "../models/User.js";
+
 
 const protectRoute = async (req, res, next) => {
     try {
-        const token = res.cookie.Jwt
+        const token = req.cookies.jwt
 
         if(!token) {
             console.log("Error Unauthorized token : ", error.message)

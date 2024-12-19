@@ -1,21 +1,21 @@
 import { useEffect } from 'react'
-import useConvertion from '../../store/useConvertion'
+import useConversation from '../../store/useConversation'
 import MessageInput from './MessageInput'
 import './MessageItem.css'
 import Messages from './Messages'
 const MessageItem = () => {
-    const {selectedConvertion, setSelectedConvertion} = useConvertion()
+    const {selectedConversation, setSelectedConversation} = useConversation()
 
     useEffect(() => {
-        return () => setSelectedConvertion(null)
-    }, [setSelectedConvertion])
+        return () => setSelectedConversation(null)
+    }, [setSelectedConversation])
 
     return (
         <div className="MessageBar">
-            {!selectedConvertion ? <NoChatSelected /> : 
+            {!selectedConversation ? <NoChatSelected /> : 
                 (<>  
                     <div className="Header">
-                        <span className="To">To : </span><span className="Friend">{selectedConvertion.fullName}</span>
+                        <span className="To">To : </span><span className="Friend">{selectedConversation.fullName}</span>
                     </div>
                     <Messages />
                     <MessageInput />

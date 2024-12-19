@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react"
-import useConvertion from "../store/useConvertion"
+import useConversation from "../store/useConversation"
 import toast from "react-hot-toast"
 
 const useGetMessage = () => {
     const [loading, setLoading] = useState(false)
-    const {messages, setMessages, selectedConvertion} = useConvertion()
+    const {messages, setMessages, selectedConversation} = useConversation()
 
     useEffect(() => {
         const getMessages = async () => {
             setLoading(true)
             try {
-                const res = await fetch(`http://localhost:5000/api/messages/${selectedConvertion._id}`)
+                const res = await fetch(`/api/messages/${selectedConversation._id}`)
 
                 const data = await res.json()
 
@@ -26,8 +26,8 @@ const useGetMessage = () => {
             }
         }
 
-        if(selectedConvertion._id) getMessages()
-    }, [selectedConvertion?._id, setMessages])
+        if(selectedConversation._id) getMessages()
+    }, [selectedConversation?._id, setMessages])
 
     return {messages, loading}
 }

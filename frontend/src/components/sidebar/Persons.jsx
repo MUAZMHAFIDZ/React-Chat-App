@@ -1,16 +1,16 @@
-import useGetConvertion from "../../hooks/useGetConvertion"
+import useGetConversation from "../../hooks/useGetConversation"
 import Person from "./Person"
 import './sidebar.css'
 
 const Persons = () => {
-    const {loading, convertions} = useGetConvertion()
+    const {loading, Conversations} = useGetConversation()
 
     return (
         <div className="persons">
-            {convertions.map((people, idx) => (
+            {Conversations.map((people, idx) => (
                 <Person 
                     key={people._id}
-                    convertion={people}
+                    Conversation={people}
                 />
             ))}
             

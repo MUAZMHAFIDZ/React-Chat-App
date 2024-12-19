@@ -1,18 +1,18 @@
 import { useState } from 'react'
 import './sidebar.css'
-import useConvertion from '../../store/useConvertion'
+import useConversation from '../../store/useConversation'
 
-const Person = ({convertion}) => {
-    const { selectedConvertion, setSelectedConvertion } = useConvertion()
+const Person = ({Conversation}) => {
+    const { selectedConversation, setSelectedConversation } = useConversation()
 
-    const isSelected = selectedConvertion?._id === convertion._id
+    const isSelected = selectedConversation?._id === Conversation._id
     
     return (
-        <div className={`person ${isSelected?"personbg" : ""}`} onClick={() => setSelectedConvertion(convertion)} >
+        <div className={`person ${isSelected?"personbg" : ""}`} onClick={() => setSelectedConversation(Conversation)} >
             <div className="avatar online">
-                <img src={convertion.photoProfile} alt="" />
+                <img src={Conversation.photoProfile} alt="" />
             </div>
-            <p>{convertion.fullName}</p>
+            <p>{Conversation.fullName}</p>
         </div>
     )
 }

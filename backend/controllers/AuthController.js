@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
-import User from "../models/User.model.js";
-import tokenAndCookie from "../utils/jwtoken.js";
+import User from "../models/User.js";
+import tokenAndCookie from "../utils/getToken.js";
 
 const signup = async (req, res) => {
     try {
@@ -16,24 +16,16 @@ const signup = async (req, res) => {
             return res.status(400).json({error: "username already exist!"})
         }
 
-
         //hash
-        const gensalt = await bcrypt.genSalt(24); 
+        const gensalt = await bcrypt.genSalt(10); 
         const hashedPassword = await bcrypt.hash(password, gensalt);
-
-        // user save
-        // https://api.dicebear.com/7.x/adventurer/svg?skinColor=f2d3b1&hair=short01,short02,short03&seed=muaz
-        // https://api.dicebear.com/7.x/adventurer/svg?skinColor=f2d3b1&hair=long01,long02,long03&seed=girl
-
-        const boyPhoto = `https://api.dicebear.com/7.x/adventurer/svg?skinColor=f2d3b1&hair=short06`
-        const girlPhoto = `https://api.dicebear.com/7.x/adventurer/svg?skinColor=f2d3b1&hair=long07`
 
         const newUser = new User({
             fullName, 
             username, 
             password: hashedPassword, 
             gender,
-            photoProfile: gender == "male" ? boyPhoto : girlPhoto
+            photoProfile: ""
         })
 
         
