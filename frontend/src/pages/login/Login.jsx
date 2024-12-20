@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import '../container.css'
 import { Link } from 'react-router-dom'
 import useLogin from '../../hooks/useLogin'
 const Login = () => {
@@ -14,29 +13,28 @@ const Login = () => {
     }
 
     return (
-        <div className="background">
+        <div className="bg-slate-600 bg-opacity-85 w-full mx-3 rounded-lg md:w-1/2 lg:w-1/3 py-3 px-10">
             <div className="container">
-                <div className="text">
-                    <p>MuazChatApp</p>
-                </div>
-                <form onSubmit={handleSubmit}  style={{marginTop:50}}>
-                    <div className='form'>
+                    <h1 className="text-transparent text-center p-5 text-3xl bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-blue-400">MuazChatApp</h1>
+                
+                <form className="w-full m-auto grid gap-4" onSubmit={handleSubmit} >
+                    <div className='flex flex-col gap-2 py-2'>
                         <label htmlFor="">
-                            <span>Username</span>
+                            <span className='text-sm'>Username</span>
                         </label>
-                        <input onChange={(e) => {setUsername(e.target.value)}} value={username} className='input' type="text" placeholder="username here" />
+                        <input className="rounded-md py-2 bg-slate-800 bg-opacity-55 px-4" onChange={(e) => {setUsername(e.target.value)}} value={username} type="text" placeholder="username here" />
                     </div>
-                    <div className='form'  style={{marginTop:30}}>
+                    <div className='flex flex-col gap-2 py-2'>
                         <label htmlFor="">
-                            <span>Password</span>
+                            <span className='text-sm'>Password</span>
                         </label>
-                        <input onChange={(e) => {setPassword(e.target.value)}} value={password} className='input' type="password" placeholder="password is secret :)" />
+                        <input className="rounded-md py-2 bg-slate-800 bg-opacity-55 px-4" onChange={(e) => {setPassword(e.target.value)}} value={password} type="password" placeholder="password is secret :)" />
                     </div>
-                    <Link className="link" to={"/signup"}>
+                    <Link className="text-blue-400 hover:text-blue-500 py-1" to={"/signup"}>
                         {"Don't"} have account?
                     </Link>
-                    <div className='button'>
-                        <button disabled={loading}>{loading ? "Loading..." : "Login"}</button>
+                    <div>
+                        <button className="w-full my-5 rounded-md py-1 text-xl bg-gradient-to-tr from-blue-600 via-purple-600 to-blue-400 hover:bg-gradient-to-tl" disabled={loading}>{loading ? "Loading..." : "Login"}</button>
                     </div>
                 </form>
             </div>

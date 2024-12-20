@@ -1,14 +1,12 @@
 import LogoutButton from "./LogoutButton"
 import Persons from "./Persons"
 import SearchPerson from "./SearchPerson"
-import './sidebar.css'
 
-const SideBar = () => {
+const SideBar = ({handleButtonA, onMessage}) => {
     return (
-        <div className="sidebar">
+        <div className={`${onMessage ? "hidden" : ""} md:block md:col-span-1 bg-slate-500 bg-opacity-55 md:grid-cols-9 rounded-md p-2`}>
             <SearchPerson />
-            <div className="space"></div>
-            <Persons />
+            <Persons handleButtonA={handleButtonA} />
             <LogoutButton />
         </div>
     )
