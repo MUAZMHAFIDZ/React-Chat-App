@@ -5,14 +5,13 @@ const Persons = ({handleButtonA}) => {
     const {loading, Conversations} = useGetConversation()
 
     return (
-        <div className="overflow-x-hidden overflow-y-auto col-span-6 h-[55vh]">
+        <div className="overflow-x-hidden overflow-y-auto col-span-6 h-[60vh]">
             {Conversations.map((people, idx) => (
-                <div onClick={() => handleButtonA(event)}>
                 <Person 
-                    key={people._id}
+                    key={idx}
                     Conversation={people}
+                    handleButtonA={handleButtonA}
                 />
-                </div>
             ))}
 
             {loading ? <span>Loading...</span> : null}

@@ -17,7 +17,7 @@ const Home = () => {
 
     return (
         <div className="bg-slate-600 bg-opacity-85 w-full mx-3 rounded-lg md:w-full lg:w-2/3 p-2">
-            <div className="grid md:grid-cols-3">
+            <div className="grid md:grid-cols-3 gap-1">
                 <SideBar handleButtonA={handleButtonA} onMessage={onMessage} />
                 <MessageItem handleButtonB={handleButtonB} onMessage={onMessage} />
             </div>

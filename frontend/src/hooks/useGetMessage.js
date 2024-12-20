@@ -10,7 +10,7 @@ const useGetMessage = () => {
         const getMessages = async () => {
             setLoading(true)
             try {
-                const res = await fetch(`/api/messages/${selectedConversation._id}`)
+                const res = await fetch(`/api/message/${selectedConversation._id}`)
 
                 const data = await res.json()
 

@@ -26,7 +26,7 @@ const Signup = () => {
     return (
         <div className="bg-slate-600 bg-opacity-85 w-full mx-3 rounded-lg md:w-1/2 lg:w-1/3 py-2 px-10">
             <div className="container">
-                <h1 className="text-transparent text-center p-2 text-3xl bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-blue-400">MuazChatApp</h1>
+                <h1 className="text-transparent text-center p-2 text-3xl bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-blue-400"><a href="https://muazmhafidz.my.id" target='_Blank'>MuazChatApp</a></h1>
                 
                 <form className="w-full max-h-[100vh] m-auto grid gap-1" onSubmit={handleSubmit}>
                     <div className='flex flex-col gap-1 py-2'>

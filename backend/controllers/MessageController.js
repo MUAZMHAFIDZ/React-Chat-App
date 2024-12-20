@@ -45,20 +45,20 @@ const sendMessage = async (req, res) => {
 const receiveMessage = async (req, res) => {
     try {
         
-        const {id:userToChatId} = req.params
+        const {id: receiverId} = req.params
         const senderId = req.user._id
         
-        const Conversation = await Conversation.findOne({
+        const conversation = await Conversation.findOne({
             participant: {$all: [senderId, receiverId]}
         }).populate("message")
 
-        if(!Conversation) {
+        if(!conversation) {
             return res.status(201).json([])
         }
 
-        const mess = Conversation.message
+        const message = conversation.message
 
-        res.status(200).json(mess)
+        res.status(200).json(message)
         
     } catch (error) {
         console.log("receive Message Error : ", error.message)
