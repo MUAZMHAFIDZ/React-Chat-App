@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import useConversation from '../../store/useConversation'
 import MessageInput from './MessageInput'
 import Messages from './Messages'
+import { useAuthContext } from '../../context/AuthContext'
 const MessageItem = ({handleButtonB, onMessage}) => {
     const {selectedConversation, setSelectedConversation} = useConversation()
 
@@ -28,9 +29,12 @@ const MessageItem = ({handleButtonB, onMessage}) => {
 export default  MessageItem
 
 const NoChatSelected = () => {
+    const {authUser} = useAuthContext()
     return (
-        <div style={{height: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
-            <p style={{textAlign: "center", color: "cornflowerblue", fontSize: "25px"}}>Welcome Back name</p>
+        <div className='h-full flex justify-center items-center overflow-x-clip'>
+            <p className='text-center text-transparent bg-clip-text bg-gradient-to-r text-3xl from-blue-400 via-purple-400 to-lime-400'>
+                Welcome Back {authUser.fullName}
+                </p>
         </div>
     )
 }

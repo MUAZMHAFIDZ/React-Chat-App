@@ -2,70 +2,64 @@ import Conversation from "../models/Conversation.js";
 import Message from "../models/Message.js";
 
 const sendMessage = async (req, res) => {
-    try {
-        const { message } = req.body;
-        const { id: receiverId } = req.params;
-        const senderId = req.user._id;
+  try {
+    const { message } = req.body;
+    const { id: receiverId } = req.params;
+    const senderId = req.user._id;
 
-        let conversation = await Conversation.findOne({
-            participant: { $all: [senderId, receiverId] }
-        });
+    let conversation = await Conversation.findOne({
+      participant: { $all: [senderId, receiverId] },
+    });
 
-        if(!conversation) {
-            conversation = await Conversation.create({
-                participant: [senderId, receiverId]
-            });
-        }
-
-        const newMessage = new Message({
-            senderId,
-            receiverId,
-            message
-        });
-
-        if(newMessage) {
-            conversation.message.push(newMessage._id);
-        }
-
-
-        //socket io for real time chat
-
-        await Promise.all([ conversation.save(), newMessage.save()])
-
-        res.status(201).json(newMessage);
-
-    } catch (error) {
-        console.log("send Message Error : ", error.message)
-        res.status(500).json({
-            error: "internal server error"
-        })
+    if (!conversation) {
+      conversation = await Conversation.create({
+        participant: [senderId, receiverId],
+      });
     }
-}
+
+    const newMessage = new Message({
+      senderId,
+      receiverId,
+      message,
+    });
+
+    if (newMessage) {
+      conversation.message.push(newMessage._id);
+    }
+
+    await Promise.all([conversation.save(), newMessage.save()]);
+
+    res.status(201).json(newMessage);
+  } catch (error) {
+    console.log("send Message Error : ", error.message);
+    res.status(500).json({
+      error: "internal server error",
+    });
+  }
+};
 
 const receiveMessage = async (req, res) => {
-    try {
-        
-        const {id: receiverId} = req.params
-        const senderId = req.user._id
-        
-        const conversation = await Conversation.findOne({
-            participant: {$all: [senderId, receiverId]}
-        }).populate("message")
+  try {
+    const { id: receiverId } = req.params;
+    const senderId = req.user._id;
 
-        if(!conversation) {
-            return res.status(201).json([])
-        }
+    const conversation = await Conversation.findOne({
+      participant: { $all: [senderId, receiverId] },
+    }).populate("message");
 
-        const message = conversation.message
-
-        res.status(200).json(message)
-        
-    } catch (error) {
-        console.log("receive Message Error : ", error.message)
-        res.status(500).json({
-            error: "internal server error"
-        })
+    if (!conversation) {
+      return res.status(201).json([]);
     }
-}
 
-export {sendMessage, receiveMessage}
+    const message = conversation.message;
+
+    res.status(200).json(message);
+  } catch (error) {
+    console.log("receive Message Error : ", error.message);
+    res.status(500).json({
+      error: "internal server error",
+    });
+  }
+};
+
+export { sendMessage, receiveMessage };

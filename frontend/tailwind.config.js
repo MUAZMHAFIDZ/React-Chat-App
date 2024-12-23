@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {},
   },
@@ -8,16 +8,15 @@ export default {
     function ({ addUtilities }) {
       addUtilities(
         {
-          '.cursor-custom': {
+          ".cursor-custom": {
             cursor: 'url("/public/blue-pointer.svg"), auto',
           },
-          '.cursor-custom2': {
+          ".cursor-custom2": {
             cursor: 'url("/public/blue-cursor.svg"), auto',
           },
         },
-        ['responsive', 'hover']
+        ["responsive", "hover"]
       );
     },
   ],
-}
-
+};
