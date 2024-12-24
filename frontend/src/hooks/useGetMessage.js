@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import useConversation from "../store/useConversation";
-import { useAuthContext } from "../context/AuthContext";
 
 const useGetMessage = () => {
   const [loading, setLoading] = useState(false);
   const { messages, setMessages, selectedConversation } = useConversation();
-  const { authUser } = useAuthContext();
 
   useEffect(() => {
     const getMessages = async () => {
@@ -19,7 +17,7 @@ const useGetMessage = () => {
           throw new Error(data.error);
         }
 
-        setMessages(Array.isArray(data) ? data : []);
+        setMessages(data);
       } catch (error) {
         toast.error(error.message);
       } finally {

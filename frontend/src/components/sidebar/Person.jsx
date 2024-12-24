@@ -6,6 +6,7 @@ const Person = ({ Conversation, handleButtonA }) => {
   const { selectedConversation, setSelectedConversation } = useConversation();
 
   const isSelected = selectedConversation?._id === Conversation._id;
+
   const { onlineUsers } = useSocketContext();
 
   const isOnline = onlineUsers.includes(Conversation._id);
@@ -28,7 +29,7 @@ const Person = ({ Conversation, handleButtonA }) => {
             <img src="test.jpeg" alt="" />
           )}
         </div>
-        <span className={isOnline ? "text-lime-500" : "text-slate-100"}>
+        <span className={isOnline ? "text-lime-400" : "text-slate-100"}>
           {Conversation.fullName}
         </span>
       </div>
