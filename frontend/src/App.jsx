@@ -10,7 +10,7 @@ function App() {
   const { authUser } = useAuthContext();
 
   return (
-    <main className="cursor-custom2 w-full bg-no-repeat bg-center flex justify-center items-center font-mono lg:bg-top text-white h-[100vh] bg-cover bg-[url('./bgbymuaz.webp')]">
+    <main className="cursor-custom2 w-full bg-no-repeat bg-center flex justify-center items-center font-mono lg:bg-top text-white h-[100vh] bg-cover bg-[url('/public/bgbymuaz.webp')]">
       <Routes>
         <Route
           path="/"
