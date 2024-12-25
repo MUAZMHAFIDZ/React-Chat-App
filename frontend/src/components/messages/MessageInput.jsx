@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useSendMessage from "../../hooks/useSendMessage";
+import { FiSend, FiUpload, FiLoader } from "react-icons/fi";
 
 const MessageInput = () => {
   const [message, setMessage] = useState("");
@@ -15,7 +16,10 @@ const MessageInput = () => {
   };
 
   return (
-    <form className="row-span-1 w-full px-2" onSubmit={handleSubmit}>
+    <form
+      className="row-span-1 flex justify-evenly w-full px-2"
+      onSubmit={handleSubmit}
+    >
       <input
         className="rounded-md px-2 mr-2 w-2/3 py-1 bg-slate-900 bg-opacity-75 text-sm"
         value={message}
@@ -24,11 +28,17 @@ const MessageInput = () => {
         placeholder="Send a Message..."
       />
       <button
-        className="cursor-custom bg-blue-800 hover:bg-blue-950 px-3 py-1 rounded-lg text-sm"
+        className="cursor-custom bg-green-500 hover:bg-blue-950 px-3 py-1 rounded-lg text-sm"
+        type="button"
+      >
+        {loading ? <FiLoader /> : <FiUpload />}
+      </button>
+      <button
+        className="cursor-custom bg-blue-500 hover:bg-blue-950 px-3 py-1 rounded-lg text-sm"
         type="submit"
         disabled={loading}
       >
-        {loading ? "..." : "send"}
+        {loading ? <FiLoader /> : <FiSend />}
       </button>
     </form>
   );

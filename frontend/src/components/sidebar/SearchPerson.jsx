@@ -3,6 +3,7 @@ import useConversation from "../../store/useConversation";
 import useGetConversation from "../../hooks/useGetConversation";
 import toast from "react-hot-toast";
 import { FiSearch, FiSettings } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const SearchPerson = () => {
   const [search, setSearch] = useState("");
@@ -27,10 +28,10 @@ const SearchPerson = () => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className="col-span-2">
+    <div className="col-span-2 grid grid-cols-12">
+      <form onSubmit={handleSubmit} className="col-span-11">
         <input
-          className="bg-slate-800 bg-opacity-40 p-1"
+          className="bg-slate-800 bg-opacity-40  w-5/6 p-1"
           type="text"
           placeholder="Search...."
           value={search}
@@ -43,10 +44,10 @@ const SearchPerson = () => {
           <FiSearch />
         </button>
       </form>
-      <Link to="/setting">
+      <Link className="col-span-1" to={"/setting"}>
         <FiSettings />
       </Link>
-    </>
+    </div>
   );
 };
 export default SearchPerson;
