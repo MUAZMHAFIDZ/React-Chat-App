@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useSendMessage from "../../hooks/useSendMessage";
+
 const MessageInput = () => {
   const [message, setMessage] = useState("");
   const { loading, sendMessage } = useSendMessage();
