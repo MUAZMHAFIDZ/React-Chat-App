@@ -22,7 +22,7 @@ const Person = ({ Conversation, handleButtonA }) => {
         <div className="w-12 rounded-full overflow-hidden object-cover h-12">
           {Conversation.photoProfile !== "" ? (
             <img
-              src={`http://localhost:5000/${Conversation.photoProfile}`}
+              src={`http://localhost:5000${Conversation.photoProfile}`}
               alt=""
             />
           ) : (

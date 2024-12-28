@@ -98,7 +98,7 @@ const MyProfile = ({ inputs, setOnEdit }) => {
       <div className="flex justify-center">
         <div className="w-20 border border-slate-700 rounded-full overflow-hidden object-cover mx-2 h-20">
           {inputs.photoProfile !== "" ? (
-            <img src={`http://localhost:5000/${inputs.photoProfile}`} alt="" />
+            <img src={`http://localhost:5000${inputs.photoProfile}`} alt="" />
           ) : (
             <img src="test.jpeg" alt="" />
           )}

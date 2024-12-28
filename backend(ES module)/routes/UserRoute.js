@@ -4,7 +4,7 @@ import {
   userSideBar,
   uploadPhotoController,
 } from "../controllers/UserController.js";
-import { uploadPhoto } from "../utils/uploadPhotoProfile.js";
+import uploadPhoto from "../utils/uploadPhotoProfile.js";
 
 const router = express.Router();
 
