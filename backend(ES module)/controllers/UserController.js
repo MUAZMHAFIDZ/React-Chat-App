@@ -59,3 +59,37 @@ export const uploadPhotoController = async (req, res) => {
       .json({ message: "An error occurred.", error: error.message });
   }
 };
+
+export const updateUserController = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const { fullName, gender } = req.body;
+
+    if (!fullName || !gender) {
+      return res.status(400).json({ message: "All fields are required." });
+    }
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found." });
+    }
+
+    if (fullName && fullName != user.fullName) user.fullName = fullName;
+    if (gender && gender != user.gender) user.gender = gender;
+
+    await user.save();
+
+    res.status(200).json({
+      _id: user._id,
+      fullName: user.fullName,
+      username: user.username,
+      photoProfile: user.photoProfile,
+      gender: user.gender,
+    });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "An error occurred.", error: error.message });
+  }
+};

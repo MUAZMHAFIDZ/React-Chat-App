@@ -3,7 +3,7 @@ import Gender from "../signup/Gender";
 import { FiSave, FiArrowLeft, FiSettings, FiLoader } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
-import useUploadPhoto from "../../hooks/useUploadProfile";
+import useUploadPhoto from "../../hooks/useUploadProfile.js";
 
 const Setting = () => {
   const { authUser } = useAuthContext();
@@ -46,7 +46,6 @@ export default Setting;
 const SettingProfile = ({ myInput, setOnEdit }) => {
   const [inputs, setInputs] = useState({
     fullName: myInput.fullName,
-    username: myInput.username,
     gender: myInput.gender,
   });
 
@@ -62,6 +61,12 @@ const SettingProfile = ({ myInput, setOnEdit }) => {
   return (
     <form className="w-full m-auto grid gap-2 mt-2" onSubmit={handleSubmit}>
       <div className="flex flex-col gap-2 py-2">
+        <p className="text-sm">Username {"(Credentials can't Edit)"}</p>
+        <p className="rounded-md py-2 bg-slate-800 bg-opacity-55 px-4">
+          {myInput.username}
+        </p>
+      </div>
+      <div className="flex flex-col gap-2 py-2">
         <label htmlFor="">
           <span className="text-sm">FullName</span>
         </label>
@@ -71,18 +76,6 @@ const SettingProfile = ({ myInput, setOnEdit }) => {
           onChange={(e) => setInputs({ ...inputs, fullName: e.target.value })}
           type="text"
           placeholder="full Name here"
-        />
-      </div>
-      <div className="flex flex-col gap-2 py-2">
-        <label htmlFor="">
-          <span className="text-sm">Username</span>
-        </label>
-        <input
-          className="rounded-md py-2 bg-slate-800 bg-opacity-55 px-4"
-          value={inputs.username}
-          onChange={(e) => setInputs({ ...inputs, username: e.target.value })}
-          type="text"
-          placeholder="username here"
         />
       </div>
       <Gender onHandleGender={handleGender} selectedGender={inputs.gender} />
@@ -122,15 +115,15 @@ const MyProfile = ({ inputs, setOnEdit }) => {
         </button>
       </div>
       <div className="flex flex-col gap-2 py-2">
-        <p className="text-sm">FullName</p>
-        <p className="rounded-md py-2 bg-slate-800 bg-opacity-55 px-4">
-          {inputs.fullName}
-        </p>
-      </div>
-      <div className="flex flex-col gap-2 py-2">
         <p className="text-sm">Username</p>
         <p className="rounded-md py-2 bg-slate-800 bg-opacity-55 px-4">
           {inputs.username}
+        </p>
+      </div>
+      <div className="flex flex-col gap-2 py-2">
+        <p className="text-sm">FullName</p>
+        <p className="rounded-md py-2 bg-slate-800 bg-opacity-55 px-4">
+          {inputs.fullName}
         </p>
       </div>
       <div className="flex flex-col gap-2 py-2">
