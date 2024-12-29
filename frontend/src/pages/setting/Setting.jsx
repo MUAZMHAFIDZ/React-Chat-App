@@ -4,6 +4,7 @@ import { FiSave, FiArrowLeft, FiSettings, FiLoader } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 import useUploadPhoto from "../../hooks/useUploadProfile.js";
+import useUpdateUser from "../../hooks/useUpdateUser.js";
 
 const Setting = () => {
   const { authUser } = useAuthContext();
@@ -48,10 +49,11 @@ const SettingProfile = ({ myInput, setOnEdit }) => {
     fullName: myInput.fullName,
     gender: myInput.gender,
   });
+  const { loading, updateUser } = useUpdateUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // await lalala(inputs);
+    updateUser(inputs);
   };
 
   const handleGender = (gender) => {
@@ -83,9 +85,9 @@ const SettingProfile = ({ myInput, setOnEdit }) => {
         <button
           type="submit"
           className="cursor-custom w-fit px-10 my-5 rounded-md py-1 text-xl bg-blue-600 hover:bg-blue-500"
-          // disabled={loading}
+          disabled={loading}
         >
-          <FiSave />
+          {loading ? <FiLoader /> : <FiSave />}
         </button>
         <button
           type="button"
