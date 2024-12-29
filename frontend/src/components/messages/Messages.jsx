@@ -47,13 +47,13 @@ const Message = ({ message }) => {
     <>
       {FromMe ? (
         <div className="flex justify-end">
-          <p className="break-words whitespace-normal text-sm mt-2 max-w-[75%] bg-blue-500 relative px-4 rounded-md">
+          <p className="break-words whitespace-normal text-sm mt-2 max-w-[75%] bg-blue-500 relative px-4 py-2 rounded-xl rounded-tr">
             {message.message}
           </p>
         </div>
       ) : (
         <div className="flex justify-start">
-          <p className="break-words whitespace-normal text-sm mt-2 max-w-[75%] bg-green-500 relative px-4 rounded-md">
+          <p className="break-words whitespace-normal text-sm mt-2 max-w-[75%] bg-green-500 relative px-4 py-2 rounded-xl rounded-tl">
             {message.message}
           </p>
         </div>
