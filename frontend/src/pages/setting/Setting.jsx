@@ -20,7 +20,7 @@ const Setting = () => {
   return (
     <div className="bg-slate-500 bg-opacity-95 w-full mx-3 rounded-lg md:w-1/2 lg:w-1/3 py-3 px-10">
       <Link to={"/"}>
-        <button className="cursor-custom w-fit px-8 py-1 rounded-md bg-red-600 hover:bg-red-500">
+        <button className="cursor-custom mt-6 w-fit px-4 py-1 rounded-md bg-red-600 hover:bg-red-500">
           <FiArrowLeft />
         </button>
       </Link>
@@ -61,14 +61,14 @@ const SettingProfile = ({ myInput, setOnEdit }) => {
   };
 
   return (
-    <form className="w-full m-auto grid gap-2 mt-2" onSubmit={handleSubmit}>
-      <div className="flex flex-col gap-2 py-2">
+    <form className="w-full m-auto grid gap-1 mt-2" onSubmit={handleSubmit}>
+      <div className="flex flex-col py-2">
         <p className="text-sm">Username {"(Credentials can't Edit)"}</p>
         <p className="rounded-md py-2 bg-slate-800 bg-opacity-55 px-4">
           {myInput.username}
         </p>
       </div>
-      <div className="flex flex-col gap-2 py-2">
+      <div className="flex flex-col py-2">
         <label htmlFor="">
           <span className="text-sm">FullName</span>
         </label>
@@ -103,7 +103,7 @@ const SettingProfile = ({ myInput, setOnEdit }) => {
 
 const MyProfile = ({ inputs, setOnEdit }) => {
   return (
-    <div className="w-full m-auto grid gap-2 mt-2">
+    <div className="w-full m-auto grid gap-1 mt-2">
       <div className="flex justify-center">
         <div className="w-20 border border-slate-700 rounded-full overflow-hidden object-cover mx-2 h-20">
           {inputs.photoProfile !== "" ? (

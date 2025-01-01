@@ -33,10 +33,10 @@ const Signup = () => {
         </h1>
 
         <form
-          className="w-full max-h-[100vh] m-auto grid gap-1"
+          className="w-full max-h-[100vh] m-auto grid"
           onSubmit={handleSubmit}
         >
-          <div className="flex flex-col gap-1 py-2">
+          <div className="flex flex-col py-2">
             <label htmlFor="">
               <span>Full Name</span>
             </label>
@@ -50,7 +50,7 @@ const Signup = () => {
               placeholder="username here"
             />
           </div>
-          <div className="flex flex-col gap-2 py-2">
+          <div className="flex flex-col py-2">
             <label htmlFor="">
               <span>Username</span>
             </label>
@@ -64,7 +64,7 @@ const Signup = () => {
               placeholder="username here"
             />
           </div>
-          <div className="flex flex-col gap-2 py-2">
+          <div className="flex flex-col py-2">
             <label htmlFor="">
               <span>Password</span>
             </label>
@@ -78,7 +78,7 @@ const Signup = () => {
               placeholder="password is secret :)"
             />
           </div>
-          <div className="flex flex-col gap-2 py-2">
+          <div className="flex flex-col py-2">
             <label htmlFor="">
               <span>Confirm Password</span>
             </label>
@@ -89,19 +89,22 @@ const Signup = () => {
                 setInputs({ ...inputs, confirmPassword: e.target.value })
               }
               type="password"
-              placeholder="Confirm Password. dun forget OK :v"
+              placeholder="Confirm Password."
             />
           </div>
           <Gender
             onHandleGender={handleGender}
             selectedGender={inputs.gender}
           />
-          <Link className="text-blue-400 hover:text-blue-500" to={"/login"}>
-            I have account
+          <Link
+            className="text-blue-400 mt-1 hover:text-blue-500"
+            to={"/login"}
+          >
+            I have an account
           </Link>
           <div>
             <button
-              className="w-full my-5 rounded-md py-1 text-xl bg-gradient-to-tr from-blue-600 via-purple-600 to-blue-400 hover:bg-gradient-to-tl"
+              className="w-full my-3 rounded-md py-1 text-xl bg-gradient-to-tr from-blue-600 via-purple-600 to-blue-400 hover:bg-gradient-to-tl"
               type="submit"
               disabled={loading}
             >
