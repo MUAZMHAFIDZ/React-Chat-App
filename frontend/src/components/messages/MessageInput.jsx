@@ -1,18 +1,38 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import useSendMessage from "../../hooks/useSendMessage";
 import { FiSend, FiUpload, FiLoader } from "react-icons/fi";
 
 const MessageInput = () => {
   const [message, setMessage] = useState("");
   const { loading, sendMessage } = useSendMessage();
+  const fileInputRef = useRef(null);
+  const [file, setFile] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!message) {
+    if (!message && !file) {
       return;
     }
-    await sendMessage(message);
+    const payload = {
+      message: message.trim() || "",
+      file: file || null,
+    };
+    await sendMessage(payload);
     setMessage("");
+    setFile(null);
+    fileInputRef.current.value = "";
+  };
+
+  const handleFileUploadClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile); // Simpan file ke state
+      console.log("File selected:", selectedFile.name);
+    }
   };
 
   return (
@@ -27,11 +47,19 @@ const MessageInput = () => {
         type="text"
         placeholder="Send a Message..."
       />
+      <input
+        ref={fileInputRef}
+        type="file"
+        className="hidden"
+        accept="image/*"
+        onChange={handleFileChange}
+      />
       <button
-        className="cursor-custom bg-green-500 hover:bg-blue-950 px-3 py-1 rounded-lg text-sm"
+        onClick={handleFileUploadClick}
+        className="cursor-custom bg-green-500 hover:bg-green-700 px-3 py-1 rounded-lg text-sm"
         type="button"
       >
-        {loading ? <FiLoader /> : <FiUpload />}
+        {loading ? <FiLoader className="animate-spin" /> : <FiUpload />}
       </button>
       <button
         className="cursor-custom bg-blue-500 hover:bg-blue-950 px-3 py-1 rounded-lg text-sm"

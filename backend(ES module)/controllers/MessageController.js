@@ -8,6 +8,12 @@ const sendMessage = async (req, res) => {
     const { id: receiverId } = req.params;
     const senderId = req.user._id;
 
+    console.log("Message:", message);
+    console.log("File:", req.file);
+    if (!message && !req.file) {
+      return res.status(400).json({ error: "Message or image is required." });
+    }
+
     let conversation = await Conversation.findOne({
       participant: { $all: [senderId, receiverId] },
     });
@@ -22,6 +28,7 @@ const sendMessage = async (req, res) => {
       senderId,
       receiverId,
       message,
+      image: req.file ? `/public/uploads/${req.file.filename}` : null,
     });
 
     if (newMessage) {

@@ -6,15 +6,21 @@ const useSendMessage = () => {
   const [loading, setLoading] = useState(false);
   const { messages, setMessages, selectedConversation } = useConversation();
 
-  const sendMessage = async (message) => {
+  const sendMessage = async ({ message = "", file = null }) => {
     try {
+      const formData = new FormData();
+      if (message) formData.append("message", message);
+      if (file) formData.append("image", file);
+
+      console.log("FormData:", formData);
+      console.log("Message:", message);
+      console.log("File:", file);
+
       const res = await fetch(`/api/message/send/${selectedConversation._id}`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message }),
+        body: formData,
       });
+
       const data = await res.json();
 
       if (data.error) {

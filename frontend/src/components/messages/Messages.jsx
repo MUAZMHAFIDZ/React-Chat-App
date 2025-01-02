@@ -83,13 +83,13 @@ const Message = ({ message, handleDelete }) => {
           <div className="break-words whitespace-normal text-sm mt-2 max-w-[75%] bg-blue-500 relative px-4 py-2 rounded-xl rounded-tr">
             {message.image && (
               <a
-                href="./public/bgbymuaz.webp"
+                href={`http://localhost:5000${message.image}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <img
                   className="rounded-md my-1 cursor-custom"
-                  src="./public/bgbymuaz.webp"
+                  src={`http://localhost:5000${message.image}`}
                   alt=""
                 />
               </a>
@@ -102,13 +102,13 @@ const Message = ({ message, handleDelete }) => {
           <div className="break-words whitespace-normal text-sm mt-2 max-w-[75%] bg-green-500 relative px-4 py-2 rounded-xl rounded-tl">
             {message.image && (
               <a
-                href="./public/bgbymuaz.webp"
+                href={`http://localhost:5000${message.image}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <img
                   className="rounded-md my-1 cursor-custom"
-                  src="./public/bgbymuaz.webp"
+                  src={`http://localhost:5000${message.image}`}
                   alt=""
                 />
               </a>
