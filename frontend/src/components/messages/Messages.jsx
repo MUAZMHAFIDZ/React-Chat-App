@@ -98,7 +98,7 @@ const Message = ({ message, handleDelete }) => {
           </div>
         </div>
       ) : (
-        <div className="flex justify-start group w-full">
+        <div className="flex justify-start w-full">
           <div className="break-words whitespace-normal text-sm mt-2 max-w-[75%] bg-green-500 relative px-4 py-2 rounded-xl rounded-tl">
             {message.image && (
               <a
@@ -114,11 +114,6 @@ const Message = ({ message, handleDelete }) => {
               </a>
             )}
             <p>{message.message}</p>
-          </div>
-          <div className="hidden px-1 items-center group-hover:flex">
-            <button className="cursor-custom">
-              <FiTrash />
-            </button>
           </div>
         </div>
       )}
