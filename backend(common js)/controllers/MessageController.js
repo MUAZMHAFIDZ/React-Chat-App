@@ -4,9 +4,6 @@ const { getReceiverSocketId, io } = require("../utils/socket");
 const fs = require("fs");
 const path = require("path");
 
-const __filename = __filename || path.resolve(__dirname, "..");
-const __dirname = path.dirname(__filename);
-
 const sendMessage = async (req, res) => {
   try {
     const { message } = req.body;
