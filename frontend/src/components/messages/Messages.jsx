@@ -3,7 +3,8 @@ import { useAuthContext } from "../../context/AuthContext";
 import useGetMessage from "../../hooks/useGetMessage";
 import useConversation from "../../store/useConversation";
 import useListenMessage from "../../hooks/useListenMessage";
-import { FiTrash } from "react-icons/fi";
+import { FiLoader, FiTrash } from "react-icons/fi";
+import useDeleteMessage from "../../hooks/useDeleteMessage";
 
 const Messages = () => {
   const { messages, loading } = useGetMessage();
@@ -24,22 +25,7 @@ const Messages = () => {
   return (
     <div className="row-span-7 my-1 pb-1 bg-slate-400 bg-opacity-55 rounded-md h-[65vh] w-[90vw] md:w-full overflow-x-hidden overflow-y-auto px-2">
       {onDelete && (
-        <div className="fixed z-10 top-0 right-0 left-0 bottom-0 px-4 flex justify-center items-center">
-          <div className="bg-slate-500 border border-red-500 p-2 text-center w-full md:w-1/3 lg:w-1/5">
-            <p>Permanent Delete ?</p>
-            <div className="flex py-2 justify-evenly">
-              <button className="rounded-md  bg-red-500 py-2 px-4">
-                Delete
-              </button>
-              <button
-                onClick={() => setOnDelete(null)}
-                className="rounded-md  bg-blue-500 py-2 px-4"
-              >
-                No, Back
-              </button>
-            </div>
-          </div>
-        </div>
+        <MessageDelete onDelete={onDelete} setOnDelete={setOnDelete} />
       )}
 
       {!loading &&
@@ -118,6 +104,45 @@ const Message = ({ message, handleDelete }) => {
         </div>
       )}
     </>
+  );
+};
+
+const MessageDelete = ({ onDelete, setOnDelete }) => {
+  const { deleteMessage, loading } = useDeleteMessage();
+
+  const handleDelete = async () => {
+    if (onDelete) {
+      await deleteMessage(onDelete);
+      setOnDelete(null);
+    }
+  };
+
+  return (
+    <div className="fixed z-10 top-0 right-0 left-0 bottom-0 px-4 flex justify-center items-center">
+      <div className="bg-slate-500 border border-red-500 p-2 text-center w-full md:w-1/3 lg:w-1/5">
+        <p>Permanent Delete ?</p>
+        {loading ? (
+          <div className="flex justify-center items-center">
+            <FiLoader className="animate-spin" />
+          </div>
+        ) : (
+          <div className="flex py-2 justify-evenly">
+            <button
+              onClick={handleDelete}
+              className="rounded-md cursor-custom bg-red-500 py-2 px-4"
+            >
+              Delete
+            </button>
+            <button
+              onClick={() => setOnDelete(null)}
+              className="rounded-md cursor-custom bg-blue-500 py-2 px-4"
+            >
+              No, Back
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 

@@ -11,7 +11,14 @@ const useListenMessage = () => {
       setMessages([...messages, newMessage]);
     });
 
-    return () => socket?.off("newMessage");
+    socket?.on("deleteMessage", ({ messageId }) => {
+      setMessages(messages.filter((message) => message._id !== messageId));
+    });
+
+    return () => {
+      socket?.off("newMessage");
+      socket?.off("deleteMessage");
+    };
   }, [socket, setMessages, messages]);
 };
 

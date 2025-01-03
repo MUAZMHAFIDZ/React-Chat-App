@@ -1,6 +1,12 @@
 import Conversation from "../models/Conversation.js";
 import Message from "../models/Message.js";
 import { getReceiverSocketId, io } from "../utils/socket.js";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const sendMessage = async (req, res) => {
   try {
@@ -76,4 +82,49 @@ const receiveMessage = async (req, res) => {
   }
 };
 
-export { sendMessage, receiveMessage };
+const deleteMessage = async (req, res) => {
+  try {
+    const { id: messageId } = req.params;
+    const userId = req.user._id;
+    const message = await Message.findById(messageId);
+    if (!message) {
+      return res.status(404).json({ error: "Message not found." });
+    }
+
+    if (message.senderId.toString() !== userId.toString()) {
+      return res
+        .status(403)
+        .json({ error: "You can only delete your own messages." });
+    }
+
+    if (message.image) {
+      const imagePath = path.join(__dirname, "..", message.image);
+      fs.unlink(imagePath, (err) => {
+        if (err) {
+          console.error("Failed to delete image file:", err);
+        }
+      });
+    }
+
+    await Message.findByIdAndDelete(messageId);
+
+    await Conversation.updateOne(
+      { message: messageId },
+      { $pull: { message: messageId } }
+    );
+
+    const receiverSocketId = getReceiverSocketId(message.receiverId);
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("deleteMessage", { messageId });
+    }
+
+    res.status(200).json({ message: "Message deleted successfully." });
+  } catch (error) {
+    console.log("delete Message Error : ", error.message);
+    res.status(500).json({
+      error: "internal server error",
+    });
+  }
+};
+
+export { sendMessage, receiveMessage, deleteMessage };

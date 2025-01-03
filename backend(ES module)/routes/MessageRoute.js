@@ -2,7 +2,8 @@ import express from "express";
 import {
   sendMessage,
   receiveMessage,
-} from "../controllers/Messagecontroller.js";
+  deleteMessage,
+} from "../controllers/MessageController.js";
 import protectRoute from "../middleware/protectRoute.js";
 import uploadImage from "../utils/uploadImage.js";
 
@@ -15,5 +16,6 @@ router.post(
   uploadImage.single("image"),
   sendMessage
 );
+router.delete("/delete/:id", protectRoute, deleteMessage);
 
 export default router;
